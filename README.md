@@ -6,6 +6,19 @@ This repository serves as a demonstration of optimizing the Distribute function 
 
 - First optimization: The initial implemented alteration pertains to the `require` statement, which has been substituted with an `if + revert` statement. This modification significantly reduces gas consumption compared to the previous require statement when the tx reverts.
 
+    1. Original:
+    ```solidity
+        require(
+            block.timestamp > createTime + 2 weeks,
+            "cannot call distribute yet"
+        );
+    ```
+
+    2. Optimized:
+    ```solidity
+        if (block.timestamp <= createTime + 2 weeks) revert();
+    ```
+
 - Second optimization: To comprehend the second optimization method employed, it is assumed that the contract is deployed sending ether, we are testing it using 6 ether:
 
 The Distribute contract is deployed, and ether is transmitted during deployment through the constructor (the constructor incorporates the 'payable' keyword to allow ether reception):
