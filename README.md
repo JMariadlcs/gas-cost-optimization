@@ -4,7 +4,7 @@ This repository serves as a demonstration of optimizing the Distribute function 
 
 ## Optimizations
 
-- First optimization: The initial implemented alteration pertains to the `require` statement, which has been substituted with an `if + revert` statement. This modification significantly reduces gas consumption compared to the previous require statement.
+- First optimization: The initial implemented alteration pertains to the `require` statement, which has been substituted with an `if + revert` statement. This modification significantly reduces gas consumption compared to the previous require statement when the tx reverts.
 
 - Second optimization: To comprehend the second optimization method employed, it is assumed that the contract is deployed sending ether, we are testing it using 6 ether:
 
