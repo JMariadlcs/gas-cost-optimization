@@ -19,7 +19,7 @@ This repository serves as a demonstration of optimizing the Distribute function 
         if (block.timestamp <= createTime + 2 weeks) revert();
     ```
 
-- Second optimization: To comprehend the second optimization method employed, it is assumed that the deployer is sending ether to the contract in the deployment tx, we are testing it using 6 ether:
+- Second optimization: To comprehend the second optimization method employed, it is assumed that the deployer is sending ether to the contract in the deployment tx, we are testing it using 6 ethers:
 
 The Distribute contract is deployed, and ether is transmitted during deployment through the constructor (the constructor incorporates the 'payable' keyword to allow ether reception):
 In this scenario, there is a much better optimization that will save more gas as the Smart Contract retains ether but the `distribute` function consistently reverts. This occurs because the function attempts to dispatch an amount of ether that exceeds the contract's balance. The issue arises from the calculation of `amount`, defined as `uint256 amount = address(this).balance / 4`, followed by six transfers of this amount. Consequently, the function attempts to transfer a cumulative amount that surpasses the quantity of ether held by the contract.
