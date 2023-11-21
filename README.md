@@ -21,6 +21,7 @@ To contrast the alterations in gas terms, the contracts were deployed using the 
 - First optimization: 
 
     The transaction reverts due to a require statement because it has not elapsed the two-week period:
+
         |           | Tx cost   | Execution cost |
         | Original  | 23835 gas | 2771 gas       |
         | Optimized | 23542 gas | 2478 gas       |
@@ -28,6 +29,7 @@ To contrast the alterations in gas terms, the contracts were deployed using the 
 - Second optimization:
 
     The contract was deployed sending 6 ethers and the `distribute` tx reverts:
+    
         |           | Tx cost   | Execution cost |
         | Original  | 71395 gas | 50331 gas      |
         | Optimized | 23780 gas | 2716 gas       |
