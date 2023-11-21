@@ -22,9 +22,9 @@ This repository serves as a demonstration of optimizing the Distribute function 
 - Second optimization: To comprehend the second optimization method employed, it is assumed that the contract is deployed sending ether, we are testing it using 6 ether:
 
 The Distribute contract is deployed, and ether is transmitted during deployment through the constructor (the constructor incorporates the 'payable' keyword to allow ether reception):
-In this scenario, the Smart Contract retains ether but the `distribute` function consistently reverts. This occurs because the function attempts to dispatch an amount of ether that exceeds the contract's balance. The issue arises from the calculation of `amount`, defined as `uint256 amount = address(this).balance / 4`, followed by six transfers of this amount. Consequently, the function attempts to transfer a cumulative amount that surpasses the quantity of ether held by the contract.
+In this scenario, there is a much better optimization that will save more gas as the Smart Contract retains ether but the `distribute` function consistently reverts. This occurs because the function attempts to dispatch an amount of ether that exceeds the contract's balance. The issue arises from the calculation of `amount`, defined as `uint256 amount = address(this).balance / 4`, followed by six transfers of this amount. Consequently, the function attempts to transfer a cumulative amount that surpasses the quantity of ether held by the contract.
 
-As the goal is to optmize the smart contract and not to fix the reverting scenario, a more efficient strategy involves incorporating an `if + revert` statement. This statement verifies whether the subsequent ether transfers are destined to revert. If the transfers are expected to revert, the smart contract promptly executes a revert without proceeding with the ether transfers. As a result, despite yielding the same outcome of a revert, this method significantly reduces gas consumption.
+As the goal is to optmize the smart contract and not to fix the reverting scenario, a more efficient strategy involves incorporating an `if + revert` statement. This statement verifies whether the subsequent ether transfers are destined to revert. If the transfers are expected to revert, the smart contract promptly executes a revert without proceeding with the ether transfers. As a result, despite yielding the same outcome of a revert, this method significantly reduces gas consumption. This `if + revert` statement should be the first operation on the function so that the execution does not consume more gas checking or calculating other instructions for then reverting due to the `if + revert` statement.
 
 Statement added:
 
@@ -52,4 +52,4 @@ To contrast the alterations in gas terms, the contracts were deployed using the 
 
         |           | Tx cost   | Execution cost |
         | Original  | 71395 gas | 50331 gas      |
-        | Optimized | 23780 gas | 2716 gas       |
+        | Optimized | 21658 gas | 594 gas       |

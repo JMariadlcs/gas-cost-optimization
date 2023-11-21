@@ -11,11 +11,11 @@ contract Distribute {
     }
 
     function distribute() external {
+        uint256 amount = address(this).balance / 4;
+        if (amount * 6 > address(this).balance) revert();
+
         if (block.timestamp <= createTime + 2 weeks) revert();
 
-        uint256 amount = address(this).balance / 4;
-
-        if (amount * 6 > address(this).balance) revert();
         payable(contributors[0]).transfer(amount);
         payable(contributors[1]).transfer(amount);
         payable(contributors[2]).transfer(amount);
