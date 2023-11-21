@@ -26,7 +26,7 @@ In this scenario, the Smart Contract retains ether but the `distribute` function
 
 As the goal is to optmize the smart contract and not to fix the reverting scenario, a more efficient strategy involves incorporating an `if + revert` statement. This statement verifies whether the subsequent ether transfers are destined to revert. If the transfers are expected to revert, the smart contract promptly executes a revert without proceeding with the ether transfers. As a result, despite yielding the same outcome of a revert, this method significantly reduces gas consumption.
 
-    1. Statement added:
+    Statement added:
     ```solidity
         if (amount * 6 > address(this).balance) revert();
     ```
