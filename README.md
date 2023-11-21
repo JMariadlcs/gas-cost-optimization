@@ -38,7 +38,7 @@ Statement added:
 
 To contrast the alterations in gas terms, the contracts were deployed using the REMIX IDE, yielding the following results:
 
-- First optimization: 
+- First optimization (the testing of the first optimization has been done without having the second implementation implemented): 
 
     The transaction reverts due to a require statement because it has not elapsed the two-week period:
 
