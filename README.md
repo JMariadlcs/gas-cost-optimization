@@ -1,6 +1,6 @@
 # gas-cost-optimization
 
-This repository serves as a demonstration of optimizing the Distribute function within the [Distribute](https://github.com/JMariadlcs/gas-cost-optimization/blob/main/original/Distribute.sol) smart contract. We are comparint the [original](https://github.com/JMariadlcs/gas-cost-optimization/blob/main/original/Distribute.sol) and [optimized](https://github.com/JMariadlcs/gas-cost-optimization/blob/main/optimized/Distribute.sol) versions of the Distribute smart contract.
+This repository serves as a demonstration of optimizing the Distribute function within the [Distribute](https://github.com/JMariadlcs/gas-cost-optimization/blob/main/original/Distribute.sol) smart contract. We are comparing the [original](https://github.com/JMariadlcs/gas-cost-optimization/blob/main/original/Distribute.sol) and [optimized](https://github.com/JMariadlcs/gas-cost-optimization/blob/main/optimized/Distribute.sol) versions of the Distribute smart contract.
 
 ## Optimizations
 
